@@ -31,7 +31,7 @@ app.use(express.json());
 // Apply the allowCors middleware to all routes
 app.use(allowCors);
 
-// Endpoint to handle translation requests
+// Endpoint to handle translation request
 app.post('/translate', async (req, res) => {
     // Check if request body exists and contains required properties
     if (!req.body || !req.body.text || !req.body.target_lang) {
