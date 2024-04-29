@@ -12,10 +12,15 @@ app.use(express.json());
 
 // Middleware to enable CORS (Cross-Origin Resource Sharing)
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*'); // Allow requests from all origins
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS'); // Allow specified HTTP methods
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization'); // Allow specified headers
-    next();
+    res.setHeader('Access-Control-Allow-Origin', '*'); // Allow requests from all origins
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS'); // Allow specified HTTP methods
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization'); // Allow specified headers
+    res.setHeader('Access-Control-Max-Age', '3600'); // Cache preflight requests for 1 hour
+    if (req.method === 'OPTIONS') {
+        return res.sendStatus(200);
+    } else {
+        next();
+    }
 });
 
 // Endpoint to handle translation requests
