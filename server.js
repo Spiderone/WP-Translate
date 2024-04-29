@@ -21,9 +21,12 @@ app.post('/translate', async (req, res) => {
     const { text, target_lang } = req.body;
     try {
         const response = await axios.post(DEEPL_BASE_URL, {
-            auth_key: DEEPL_API_KEY,
             text,
             target_lang,
+        }, {
+            headers: {
+                Authorization: `DeepL-Auth-Key ${DEEPL_API_KEY}`
+            }
         });
         const translatedText = response.data.translations[0].text;
         res.json({ translatedText });
