@@ -32,8 +32,8 @@ app.post('/translate', async (req, res) => {
         const translatedText = response.data.translations[0].text;
         res.json({ translatedText });
     } catch (error) {
-        console.error('Error translating text:', error);
-        res.status(500).json({ error: 'Error translating text' });
+        // console.error('Error translating text:', error);
+        // res.status(500).json({ error: 'Error translating text' });
     }
 });
 
