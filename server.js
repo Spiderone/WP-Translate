@@ -5,10 +5,19 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 const DEEPL_API_KEY = '0f1efd94-f201-45eb-937f-062d1cf120a7:fx';
-const DEEPL_BASE_URL = 'https://api.deepl.com/v2/translate';
+const DEEPL_BASE_URL = 'https://api-free.deepl.com/v2/translate';
+
+// Middleware to parse JSON request bodies
+app.use(express.json());
 
 // Endpoint to handle translation requests
 app.post('/translate', async (req, res) => {
+    // Check if request body exists and contains required properties
+    if (!req.body || !req.body.text || !req.body.target_lang) {
+        console.error('Invalid request body:', req.body);
+        return res.status(400).json({ error: 'Invalid request body' });
+    }
+    
     const { text, target_lang } = req.body;
     try {
         const response = await axios.post(DEEPL_BASE_URL, {
