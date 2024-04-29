@@ -10,6 +10,14 @@ const DEEPL_BASE_URL = 'https://api-free.deepl.com/v2/translate';
 // Middleware to parse JSON request bodies
 app.use(express.json());
 
+// Middleware to enable CORS (Cross-Origin Resource Sharing)
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*'); // Allow requests from all origins
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS'); // Allow specified HTTP methods
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization'); // Allow specified headers
+    next();
+});
+
 // Endpoint to handle translation requests
 app.post('/translate', async (req, res) => {
     // Check if request body exists and contains required properties
@@ -32,8 +40,8 @@ app.post('/translate', async (req, res) => {
         const translatedText = response.data.translations[0].text;
         res.json({ translatedText });
     } catch (error) {
-        // console.error('Error translating text:', error);
-        // res.status(500).json({ error: 'Error translating text' });
+        console.error('Error translating text:', error);
+        res.status(500).json({ error: 'Error translating text' });
     }
 });
 
