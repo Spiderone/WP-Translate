@@ -44,6 +44,12 @@ app.post('/translate', allowCors(async (req, res) => {
                 'Content-Type': 'application/json',
             }
         });
+
+        // Forward DeepL API response to client with appropriate CORS headers
+        res.setHeader('Access-Control-Allow-Origin', 'https://coinaute.com');
+        res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+        res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
         const translatedText = response.data.translations[0].text;
         res.json({ translatedText });
     } catch (error) {
