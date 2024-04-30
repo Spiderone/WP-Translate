@@ -1,17 +1,7 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "./index.js",
-        "use": "@vercel/node"
-      }
-    ],
-    "rewrites": [
-        { "source": "/(.*)", "destination": "/api" }
-      ],
     "headers": [
       {
-        "source": "/api/(.*)",
+        "source": "/translate",
         "headers": [
           { "key": "Access-Control-Allow-Credentials", "value": "true" },
           { "key": "Access-Control-Allow-Origin", "value": "https://coinaute.com" },
