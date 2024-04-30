@@ -7,9 +7,6 @@ const PORT = process.env.PORT || 3000;
 const DEEPL_API_KEY = '0f1efd94-f201-45eb-937f-062d1cf120a7:fx';
 const DEEPL_BASE_URL = 'https://api-free.deepl.com/v2/translate';
 
-// Middleware to parse JSON request bodies
-app.use(express.json());
-
 // Middleware to enable CORS (Cross-Origin Resource Sharing)
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*'); // Allow requests from all origins
@@ -22,6 +19,9 @@ app.use((req, res, next) => {
         next();
     }
 });
+
+// Middleware to parse JSON request bodies
+app.use(express.json());
 
 // Endpoint to handle translation requests
 app.post('/translate', async (req, res) => {
