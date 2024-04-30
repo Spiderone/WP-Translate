@@ -23,6 +23,11 @@ const allowCors = fn => async (req, res) => {
 // Middleware to parse JSON request bodies
 app.use(express.json());
 
+
+app.get('/test', (req, res) => {
+    res.send('This is a test endpoint');
+});
+
 // Endpoint to handle translation requests
 app.post('/translate', allowCors(async (req, res) => {
     // Check if request body exists and contains required properties
