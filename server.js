@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3000;
 // Middleware to enable CORS (Cross-Origin Resource Sharing)
 const allowCors = fn => async (req, res) => {
     res.setHeader('Access-Control-Allow-Credentials', true);
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Origin', 'https://coinaute.com');
     res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
     res.setHeader(
         'Access-Control-Allow-Headers',
@@ -40,7 +40,7 @@ app.post('/translate', allowCors(async (req, res) => {
             target_lang,
         }, {
             headers: {
-                'Authorization': `DeepL-Auth-Key ${DEEPL_API_KEY}`,
+                'Authorization': `DeepL-Auth-Key 07dd6ad1-4048-447b-9984-7d3cd86f9cf3:fx`,
                 'Content-Type': 'application/json',
             }
         });
