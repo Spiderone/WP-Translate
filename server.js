@@ -12,7 +12,7 @@ const DEEPL_BASE_URL = 'https://api-free.deepl.com/v2/translate';
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*'); // Allow requests from all origins
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS'); // Allow specified HTTP methods
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization'); // Allow specified headers
+    res.setHeader('Access-Control-Allow-Headers', '*'); // Allow specified headers
     res.setHeader('Access-Control-Max-Age', '3600'); // Cache preflight requests for 1 hour
     if (req.method === 'OPTIONS') {
         return res.sendStatus(200);
